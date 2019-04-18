@@ -1,27 +1,34 @@
 <template>
 	<div>
-		<div class="story">
-			<form @submit.prevent="saveStory">
-				<div class="field-head">Title</div>
-				<input ref='title' v-model="title" class="story-title" type="text" name="title"><br><br>
-				<div class="field-head">Text</div>
-				<textarea v-model="text" class="story-text" type="text" name="text"></textarea><br>
-				<button class="pure-button-primary" type="submit">save</button><br>
-				<br>
-				<div v-if="id !== ''">
-					<div v-if="paths.length > 0"> 
-						<div class="field-head">Paths</div>
-						<br>
-						<span v-for="path in paths"> <router-link class="story-link" :to="'/story/'+path._id">{{path.title}} </router-link> <button class="pure-button-primary"@click="deletePath(path)">x</button> | </span>
-						<br><br>
-					</div>
-					<select style="margin: 10px" ref='paths' @change="changeSelectedPath">
-						<option v-for="s in stories" :value="s._id">{{s.title}}</option>
-					</select>
-					<button class="pure-button-primary" @click="addPath($refs.paths)">Add Path</button>
+		<div v-if="user">
+			<div class="story">
+				<form @submit.prevent="saveStory">
+					<div class="field-head">Title</div>
+					<input ref='title' v-model="title" class="story-title" type="text" name="title"><br><br>
+					<div class="field-head">Text</div>
+					<textarea v-model="text" class="story-text" type="text" name="text"></textarea><br>
+					<button class="pure-button-primary" type="submit">save</button><br>
 					<br>
-				</div>
-			</form>
+					<div v-if="id !== ''">
+						<div v-if="paths.length > 0"> 
+							<div class="field-head">Paths</div>
+							<br>
+							<span v-for="path in paths"> <router-link class="story-link" :to="'/story/'+path._id">{{path.title}} </router-link> <button class="pure-button-primary"@click="deletePath(path)">x</button> | </span>
+							<br><br>
+						</div>
+						<select style="margin: 10px" ref='paths' @change="changeSelectedPath">
+							<option v-for="s in stories" :value="s._id">{{s.title}}</option>
+						</select>
+						<button class="pure-button-primary" @click="addPath($refs.paths)">Add Path</button>
+						<br>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div v-else>
+			<p>If you would like to upload photos, please register for an account or login.</p>
+			<router-link to="/register" class="pure-button">Register</router-link> or
+			<router-link to="/login" class="pure-button">Login</router-link>
 		</div>
 	</div>
 </template>
@@ -45,6 +52,9 @@
 			}
 		},
 		computed: {
+			user() {
+				return this.$store.state.user;
+			},
 			editTitle() {
 				return this.focus === 'title';
 			},
