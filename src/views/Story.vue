@@ -13,7 +13,7 @@
 						<div v-if="paths.length > 0"> 
 							<div class="field-head">Paths</div>
 							<br>
-							<span v-for="path in paths"> <router-link class="story-link" :to="'/story/'+path._id">{{path.title}} </router-link> <button class="pure-button-primary"@click="deletePath(path)">x</button> | </span>
+							<span v-for="path in paths"> <a class="story-link" :href="path._id">{{path.title}} </a> <button class="pure-button-primary"@click="deletePath(path)">x</button> | </span>
 							<br><br>
 						</div>
 						<select style="margin: 10px" ref='paths' @change="changeSelectedPath">
