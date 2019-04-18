@@ -13,7 +13,7 @@
 					<router-link to="/story" class="pure-menu-link">New Story</router-link>
 				</li>
 				<li class="pure-menu-item">
-					<a href="https://github.com/BYU-CS-260-Winter-2019/lab-5-jhveem" class="pure-menu-link">git</a>
+					<a href="https://github.com/jhveem/story-maker" class="pure-menu-link">git</a>
 				</li>
 			</ul>
 		</div>
