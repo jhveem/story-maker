@@ -67,7 +67,7 @@
 			},
 		},
 		async created() {
-			//await this.$store.dispatch("getUser");
+			await this.$store.dispatch("getUser");
 			if (this.id !== '') {
 				let data = {
 					id: this.id,
